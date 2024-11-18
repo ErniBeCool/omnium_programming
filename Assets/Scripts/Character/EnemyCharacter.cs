@@ -7,14 +7,15 @@ public class EnemyCharacter : Character
     [SerializeField] private AiState currentState;
 
 
-    [SerializeField]
-    private Character targetCharacter;
-
     private float timeBetweetAttackCounter = 0;
 
-    public override void Start()
+
+    public override Character CharacterTarget => GameManager.Instance.CharacterFactory.Player;
+
+
+    public override void Initialize()
     {
-        base.Start();
+        base.Initialize();
 
         LiveComponent = new ImmortalLiveComponent();
         DamageComponent = new CharacterDamageComponent();
@@ -29,17 +30,17 @@ public class EnemyCharacter : Character
                 break;
 
             case AiState.MoveToTarget:
-                Vector3 direction = targetCharacter.transform.position - transform.position;
+                Vector3 direction = CharacterTarget.transform.position - transform.position;
                 direction.Normalize();
 
                 MovableComponent.Move(direction);
                 MovableComponent.Rotation(direction);
 
 
-                if (Vector3.Distance(targetCharacter.transform.position, transform.position) < 3
+                if (Vector3.Distance(CharacterTarget.transform.position, transform.position) < 3
                     && timeBetweetAttackCounter <= 0) 
                 {
-                    DamageComponent.MakeDamage(targetCharacter);
+                    DamageComponent.MakeDamage(CharacterTarget);
                     timeBetweetAttackCounter = characterData.TimeBetweenAttacks;
                 }
                 
