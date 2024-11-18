@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4919859324024951930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 6462887505271598581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -165,7 +165,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2244881781439893671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  timeBetweenAttacks: 0
+  scoreCost: 0
+  timeBetweenAttacks: 1
   characterTransform: {fileID: 5997749499604123379}
   characterController: {fileID: 2886401326460266439}
 --- !u!114 &4998949410653429299
@@ -194,4 +195,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92aeb8c423e9bca49a464d0bdf398211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 1
   characterData: {fileID: 2244881781439893671}

@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = Vector3.zero;
         player.gameObject.SetActive(true);
         player.Initialize();
+        player.LiveComponent.OnCharacterDeath += CharacterDeathHandler;
 
 
         gameSessionTime = 0;
@@ -85,16 +86,18 @@ public class GameManager : MonoBehaviour
         switch(deathCharacter.CharacterType)
         {
             case CharacterType.Player:
-
+                GameOver();
                 break;
 
             case CharacterType.DefaultEnemy:
-
+                scoreSystem.AddScore(deathCharacter.CharacterData.ScoreCost);
                 break;
         }
 
         deathCharacter.gameObject.SetActive(false);
         characterFactory.ReturnCharacter(deathCharacter);
+
+        deathCharacter.LiveComponent.OnCharacterDeath -= CharacterDeathHandler;
     }
 
 
@@ -105,6 +108,7 @@ public class GameManager : MonoBehaviour
         enemy.transform.position = new Vector3(playerPosition.x + GetOffset(), 0, playerPosition.z + GetOffset());
         enemy.gameObject.SetActive(true);
         enemy.Initialize();
+        enemy.LiveComponent.OnCharacterDeath += CharacterDeathHandler;
 
 
         float GetOffset()

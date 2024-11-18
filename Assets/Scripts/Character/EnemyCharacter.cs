@@ -10,14 +10,17 @@ public class EnemyCharacter : Character
     private float timeBetweetAttackCounter = 0;
 
 
-    public override Character CharacterTarget => GameManager.Instance.CharacterFactory.Player;
+    public override Character CharacterTarget => 
+        GameManager.Instance.CharacterFactory.Player;
 
 
     public override void Initialize()
     {
         base.Initialize();
 
-        LiveComponent = new ImmortalLiveComponent();
+        LiveComponent = new CharacterLiveComponent();
+        LiveComponent.Initialize(this);
+
         DamageComponent = new CharacterDamageComponent();
     }
 
@@ -33,8 +36,8 @@ public class EnemyCharacter : Character
                 Vector3 direction = CharacterTarget.transform.position - transform.position;
                 direction.Normalize();
 
-                MovableComponent.Move(direction);
-                MovableComponent.Rotation(direction);
+                MovementComponent.Move(direction);
+                MovementComponent.Rotation(direction);
 
 
                 if (Vector3.Distance(CharacterTarget.transform.position, transform.position) < 3

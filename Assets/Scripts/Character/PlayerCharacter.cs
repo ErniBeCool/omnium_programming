@@ -47,18 +47,18 @@ public class PlayerCharacter : Character
 
         if (CharacterTarget == null)
         {
-            MovableComponent.Rotation(movementVector);
+            MovementComponent.Rotation(movementVector);
         }
         else 
         {
             Vector3 rotationDirection = CharacterTarget.transform.position - transform.position;
-            MovableComponent.Rotation(movementVector);
+            MovementComponent.Rotation(rotationDirection);
 
-            if (Input.GetKeyDown("Jump"))
-            DamageComponent.MakeDamage(CharacterTarget);
+            if (Input.GetButtonDown("Jump"))
+                DamageComponent.MakeDamage(CharacterTarget);
         }
 
 
-        MovableComponent.Move(movementVector);
+        MovementComponent.Move(movementVector);
     }
 }

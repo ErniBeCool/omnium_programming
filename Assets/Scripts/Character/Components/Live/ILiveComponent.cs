@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ILiveComponent
+public interface ILiveComponent : ICharacterComponent
 {
-    float MaxHealth { get; }
+    public event Action<Character> OnCharacterDeath;
 
-    float Health { get; }
+
+    public float MaxHealth { get; }
+
+    public float Health { get; }
 
     public void SetDamage(float damage);
 }
