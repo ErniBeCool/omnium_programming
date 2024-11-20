@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (isGameActive)
+        if (!isGameActive)
             return;
 
         gameSessionTime = Time.deltaTime;

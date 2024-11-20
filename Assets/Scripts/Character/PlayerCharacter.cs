@@ -35,6 +35,9 @@ public class PlayerCharacter : Character
         base.Initialize();
 
         LiveComponent = new CharacterLiveComponent();
+        LiveComponent.Initialize(this);
+
+        DamageComponent = new CharacterDamageComponent();
     }
 
 
