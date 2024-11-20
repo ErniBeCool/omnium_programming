@@ -17,6 +17,7 @@ public abstract class Character : MonoBehaviour
     public IMovable MovementComponent { get; protected set; }
     public ILiveComponent LiveComponent { get; protected set; } 
     public IDamageComponent DamageComponent { get; protected set; }
+    public CharacterType Type { get; set; }
 
     public virtual void Initialize()
     {
