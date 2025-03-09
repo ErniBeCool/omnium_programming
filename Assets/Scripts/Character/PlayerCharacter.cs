@@ -33,11 +33,10 @@ public class PlayerCharacter : Character
     public override void Initialize()
     {
         base.Initialize();
-
         LiveComponent = new CharacterLiveComponent();
         LiveComponent.Initialize(this);
-
         DamageComponent = new CharacterDamageComponent();
+        DamageComponent.Initialize(this);
     }
 
 

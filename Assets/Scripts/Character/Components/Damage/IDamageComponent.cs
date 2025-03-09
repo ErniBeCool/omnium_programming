@@ -4,8 +4,7 @@ using UnityEngine;
 
 public interface IDamageComponent
 {
-    float Damage {  get; }
-
-    void MakeDamage(Character characterTarger);
-
+    float Damage { get; }
+    void Initialize(Character character); // Добавляем метод Initialize
+    void MakeDamage(Character characterTarget);
 }
