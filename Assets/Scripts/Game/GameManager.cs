@@ -41,18 +41,31 @@ public class GameManager : MonoBehaviour
             GameObject baseObj = new GameObject("PlayerBase");
             playerBase = baseObj.AddComponent<Base>();
         }
-        StartGame();
+        //StartGame();
     }
 
     public void StartGame()
     {
+        if (characterFactory == null)
+        {
+            Debug.LogError("characterFactory is null!");
+            return;
+        }
+
         Character player = characterFactory.GetCharacter(CharacterType.Player);
         player.transform.position = Vector3.zero;
         player.gameObject.SetActive(true);
         player.Initialize();
         player.LiveComponent.OnCharacterDeath += CharacterDeathHandler;
 
+        if (playerBase == null)
+        {
+            Debug.LogError("playerBase is null! Creating a new one.");
+            GameObject baseObj = new GameObject("PlayerBase");
+            playerBase = baseObj.AddComponent<Base>();
+        }
         playerBase.transform.position = Vector3.zero;
+
         scoreSystem.StartGame();
         StartNextWave();
     }
