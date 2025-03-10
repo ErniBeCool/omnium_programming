@@ -3,7 +3,10 @@ guid: 9b6fe67189a969145b435fd776c000df
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameData: {fileID: 11400000, guid: be403fada4ecde84394b5d92d32ca1e2, type: 2}
+  - characterFactory: {instanceID: 0}
+  - playerBase: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

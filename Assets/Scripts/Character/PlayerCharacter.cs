@@ -12,7 +12,7 @@ public class PlayerCharacter : Character
             Character target = null;
             float minDistance = float.MaxValue;
             List<Character> list = GameManager.Instance.CharacterFactory.ActiveCharacters;
-            for (int i = 0; i < list.Count; i++) 
+            for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].CharacterType == CharacterType.Player)
                     continue;
@@ -44,22 +44,23 @@ public class PlayerCharacter : Character
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
         Vector3 movementVector = new Vector3(moveHorizontal, 0, moveVertical).normalized;
 
         if (CharacterTarget == null)
         {
             MovementComponent.Rotation(movementVector);
         }
-        else 
+        else
         {
             Vector3 rotationDirection = CharacterTarget.transform.position - transform.position;
             MovementComponent.Rotation(rotationDirection);
 
             if (Input.GetButtonDown("Jump"))
+            {
+                Debug.Log("Attack triggered. Target: " + (CharacterTarget != null ? CharacterTarget.name : "null"));
                 DamageComponent.MakeDamage(CharacterTarget);
+            }
         }
-
 
         MovementComponent.Move(movementVector);
     }

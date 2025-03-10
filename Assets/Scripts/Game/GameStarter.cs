@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GameStarter : MonoBehaviour
 {
+    private bool hasStarted = false;
+
     void Start()
     {
-        GameManager.Instance.StartGame();
+        if (!hasStarted && GameManager.Instance != null)
+        {
+            GameManager.Instance.StartGame();
+            hasStarted = true;
+        }
     }
 }

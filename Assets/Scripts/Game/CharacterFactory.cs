@@ -24,6 +24,12 @@ public class CharacterFactory : MonoBehaviour
     public Character GetCharacter(CharacterType type)
     {
         Character character = null;
+        if (type == CharacterType.Player && Player != null)
+        {
+            Debug.Log("Player already exists, returning existing instance.");
+            return Player;
+        }
+
         if (disabledCharacters.ContainsKey(type))
         {
             if (disabledCharacters[type].Count > 0)
@@ -37,11 +43,16 @@ public class CharacterFactory : MonoBehaviour
         }
 
         if (character == null)
-        { 
+        {
             character = InstantiateCharacter(type);
+            Debug.Log("New character instantiated: " + character.name + " (Type: " + type + ")");
         }
 
         activeCharacters.Add(character);
+        if (type == CharacterType.Player)
+        {
+            Player = character; // Убеждаемся, что Player обновляется
+        }
         return character;
     }
 
