@@ -16,8 +16,14 @@ public class CharacterLiveComponent : ILiveComponent
         protected set { return; }
     }
 
+    public void Initialize(float health)
+    {
+        MaxHealth = health + GameManager.Instance.SkillService.HealthBonus;
+        currentHealth = MaxHealth;
+    }
     public float Health
     {
+
         get => currentHealth;
         protected set 
         {
@@ -32,7 +38,7 @@ public class CharacterLiveComponent : ILiveComponent
             }
         }
                 
-}
+    }
 
     public CharacterLiveComponent()
     {

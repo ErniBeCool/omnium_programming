@@ -59,6 +59,7 @@ public class PlayerCharacter : Character
             {
                 Debug.Log("Attack triggered. Target: " + (CharacterTarget != null ? CharacterTarget.name : "null"));
                 DamageComponent.MakeDamage(CharacterTarget);
+                GameManager.Instance.AudioService.PlayAttackSound();
             }
         }
 

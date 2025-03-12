@@ -1458,6 +1458,9 @@ GameObject:
   m_Component:
   - component: {fileID: 838178305}
   - component: {fileID: 838178304}
+  - component: {fileID: 838178306}
+  - component: {fileID: 838178307}
+  - component: {fileID: 838178308}
   m_Layer: 0
   m_Name: GameManager1
   m_TagString: Untagged
@@ -1481,6 +1484,9 @@ MonoBehaviour:
   characterFactory: {fileID: 34434143}
   playerBase: {fileID: 0}
   floatingTextTemplate: {fileID: 1429412585}
+  itemsService: {fileID: 838178306}
+  audioService: {fileID: 838178307}
+  skillService: {fileID: 838178308}
 --- !u!4 &838178305
 Transform:
   m_ObjectHideFlags: 0
@@ -1497,6 +1503,46 @@ Transform:
   - {fileID: 34434142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &838178306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838178303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1ce000d3898384d88500dda8f4b6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceItemPrefab: {fileID: 3053966832629198827, guid: 6e701c95308ed3c49a0c56685fb48aa5, type: 3}
+--- !u!114 &838178307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838178303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34d0b127595f5843aa41e0637d39847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsSource: {fileID: 0}
+  attackClip: {fileID: 8300000, guid: 25c8ddb34812c744dbaa70d5b01895d3, type: 3}
+  deathClip: {fileID: 8300000, guid: 5cb061ae4d3ec4c4b917abd166873e0f, type: 3}
+--- !u!114 &838178308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838178303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d2bf7a064c02145b52d07b595aacb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

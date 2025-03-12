@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharacterFactory characterFactory;
     [SerializeField] private Base playerBase;
     [SerializeField] private GameObject floatingTextTemplate;
+    [SerializeField] private ItemsService itemsService;
+    [SerializeField] private AudioSystemService audioService;
+    [SerializeField] private SkillService skillService;
 
-    private ScoreSystem scoreSystem;
+    public ScoreSystem scoreSystem;
     private int currentWave = 0;
     private int enemiesToSpawn = 5;
     private int enemiesAlive = 0;
@@ -22,6 +25,9 @@ public class GameManager : MonoBehaviour
     public CharacterFactory CharacterFactory => characterFactory;
     public Base PlayerBase => playerBase ?? (playerBase = CreateDefaultBase());
     public int Score => scoreSystem != null ? scoreSystem.Score : 0;
+    public ItemsService ItemsService => itemsService;
+    public AudioSystemService AudioService => audioService;
+    public SkillService SkillService => skillService;
 
     private Base CreateDefaultBase()
     {
@@ -62,6 +68,9 @@ public class GameManager : MonoBehaviour
             GameObject baseObj = new GameObject("PlayerBase");
             playerBase = baseObj.AddComponent<Base>();
         }
+        itemsService.Initialize();
+        audioService.Initialize();
+        skillService.Initialize();
     }
 
     public void StartGame()
@@ -115,6 +124,12 @@ public class GameManager : MonoBehaviour
             if (waveTimer <= 0)
             {
                 StartNextWave();
+            }
+
+            if (scoreSystem.Score >= 100 && scoreSystem.Score % 100 == 0)
+            {
+                SkillService.UpgradeHealth(10f); // +10 к здоровью
+                SkillService.UpgradePickupRange(0.5f); // +0.5 к дистанции
             }
         }
     }
@@ -183,6 +198,9 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Wave completed!");
                 }
                 ShowFloatingScore(deathCharacter.transform.position, scoreGained);
+                
+                ItemsService.SpawnItem(deathCharacter.transform.position);
+                GameManager.Instance.AudioService.PlayDeathSound();
                 break;
         }
 
